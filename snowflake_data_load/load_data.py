@@ -19,7 +19,7 @@ source = rest_api_source({
 
 pipeline = dlt.pipeline(
     pipeline_name="spacex_data_load",
-    destination="snowflake",
+    destination="snowflake", # Snowflake is used purely for practice , in reality a DLT pipeline of this scale could be directly linked with a transformation tool like sqlmesh (https://sqlmesh.readthedocs.io/en/stable/integrations/dlt/?h=dlt)
     dataset_name="public",
 )
 
