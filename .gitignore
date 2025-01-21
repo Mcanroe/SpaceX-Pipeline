@@ -1,2 +1,7 @@
 .dlt
 *.db
+db.db.wal
+.venv
+config.yaml
+logs
+.cache
