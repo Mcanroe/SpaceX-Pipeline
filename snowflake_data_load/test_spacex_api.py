@@ -1,7 +1,7 @@
 import polars as pl
-import requests 
+import requests
 
-url = 'https://api.spacexdata.com/v5/launches'
+url = "https://api.spacexdata.com/v5/launches"
 response = requests.get(url)
 data = response.json()
 
