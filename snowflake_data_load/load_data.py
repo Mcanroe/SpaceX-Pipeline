@@ -28,12 +28,12 @@ source = rest_api_source(
     }
 )
 
-os.environ["CREDENTIALS__HOST"] = os.environ.get("SNOWFLAKE_HOST")
-os.environ["CREDENTIALS__USERNAME"] = os.environ.get("SNOWFLAKE_USERNAME")
-os.environ["CREDENTIALS__PASSWORD"] = os.environ.get("SNOWFLAKE_PASSWORD")
-os.environ["CREDENTIALS__WAREHOUSE"] = os.environ.get("SNOWFLAKE_WAREHOUSE")
-os.environ["CREDENTIALS__DATABASE"] = os.environ.get("SNOWFLAKE_DATABASE")
-os.environ["CREDENTIALS__ROLE"] = os.environ.get("SNOWFLAKE_ROLE")
+os.environ["DESTINATION__CREDENTIALS__HOST"] = os.environ.get("SNOWFLAKE_HOST")
+os.environ["DESTINATION__CREDENTIALS__USERNAME"] = os.environ.get("SNOWFLAKE_USER")
+os.environ["DESTINATION__CREDENTIALS__PASSWORD"] = os.environ.get("SNOWFLAKE_PASSWORD")
+os.environ["DESTINATION__CREDENTIALS__WAREHOUSE"] = os.environ.get("SNOWFLAKE_WAREHOUSE")
+os.environ["DESTINATION__CREDENTIALS__DATABASE"] = os.environ.get("SNOWFLAKE_DATABASE")
+os.environ["DESTINATION__CREDENTIALS__ROLE"] = os.environ.get("SNOWFLAKE_ROLE")
 
 pipeline = dlt.pipeline(
     pipeline_name="spacex_data_load",
