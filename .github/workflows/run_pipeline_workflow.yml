@@ -11,25 +11,29 @@ jobs:
   load-data:
     runs-on: ubuntu-latest
   
-  steps:
-    - uses: actions/checkout@v4
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v4
 
-    - name: Install uv
-      uses: astral-sh/setup-uv@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.12' 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12' 
     
-    - name: Install dependencies
-      run: uv sync --all-extras
+      - name: Install dependencies
+        run: uv sync --all-extras
     
-    - name: Run data load script
-      env: 
+      - name: Run data load script
+        env: 
         SNOWFLAKE_HOST: ${{ secrets.SNOWFLAKE_HOST }}
         SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
         SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
         SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
         SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+
+        run: |
+          python snowflake_data_load/load_data.py
