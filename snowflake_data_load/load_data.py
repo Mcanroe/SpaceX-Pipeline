@@ -4,6 +4,7 @@
 
 import dlt
 from dlt.sources.rest_api import rest_api_source
+import os
 
 source = rest_api_source(
     {
@@ -26,6 +27,13 @@ source = rest_api_source(
         ],
     }
 )
+
+os.environ["CREDENTIALS__HOST"] = os.environ.get("SNOWFLAKE_HOST")
+os.environ["CREDENTIALS__USERNAME"] = os.environ.get("SNOWFLAKE_USERNAME")
+os.environ["CREDENTIALS__PASSWORD"] = os.environ.get("SNOWFLAKE_PASSWORD")
+os.environ["CREDENTIALS__WAREHOUSE"] = os.environ.get("SNOWFLAKE_WAREHOUSE")
+os.environ["CREDENTIALS__DATABASE"] = os.environ.get("SNOWFLAKE_DATABASE")
+os.environ["CREDENTIALS__ROLE"] = os.environ.get("SNOWFLAKE_ROLE")
 
 pipeline = dlt.pipeline(
     pipeline_name="spacex_data_load",
