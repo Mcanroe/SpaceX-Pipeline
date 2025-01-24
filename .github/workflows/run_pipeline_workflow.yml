@@ -40,4 +40,4 @@ jobs:
           SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
 
         run: |
-          python snowflake_data_load/load_data.py
+          uv run snowflake_data_load/load_data.py
