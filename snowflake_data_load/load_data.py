@@ -38,6 +38,7 @@ os.environ["DESTINATION__CREDENTIALS__ROLE"] = os.getenv("SNOWFLAKE_ROLE")
 pipeline = dlt.pipeline(
     pipeline_name="spacex_data_load",
     destination="snowflake",  # Snowflake is used purely for practice , in reality a DLT pipeline of this scale could be pulled into duckdb and transformed with a tool like dbt/sqlmesh
+    dataset_name="SPACEX_DATA",
 )
 
 load_info = pipeline.run(source)
