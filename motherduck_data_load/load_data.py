@@ -28,17 +28,10 @@ source = rest_api_source(
     }
 )
 
-os.environ["DESTINATION__CREDENTIALS__HOST"] = os.getenv("SNOWFLAKE_HOST")
-os.environ["DESTINATION__CREDENTIALS__USERNAME"] = os.getenv("SNOWFLAKE_USER")
-os.environ["DESTINATION__CREDENTIALS__PASSWORD"] = os.getenv("SNOWFLAKE_PASSWORD")
-os.environ["DESTINATION__CREDENTIALS__WAREHOUSE"] = os.getenv("SNOWFLAKE_WAREHOUSE")
-os.environ["DESTINATION__CREDENTIALS__DATABASE"] = os.getenv("SNOWFLAKE_DATABASE")
-os.environ["DESTINATION__CREDENTIALS__ROLE"] = os.getenv("SNOWFLAKE_ROLE")
-
 pipeline = dlt.pipeline(
     pipeline_name="spacex_data_load",
-    destination="snowflake",  # Snowflake is used purely for practice , in reality a DLT pipeline of this scale could be pulled into duckdb and transformed with a tool like dbt/sqlmesh
-    dataset_name="SPACEX_DATA",
+    destination="motherduck",  # Switch to motherduck since Snowflake trial account expired
+    dataset_name="bronze",
 )
 
 load_info = pipeline.run(source)

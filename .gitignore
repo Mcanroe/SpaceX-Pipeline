@@ -5,3 +5,5 @@ db.db.wal
 config.yaml
 logs
 .cache
+secrets.toml
+config.toml
