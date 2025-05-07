@@ -1,0 +1,6 @@
+sources:
+  - name: spacex_md
+    database: spacex
+    schema: bronze 
+    tables:
+      - name: launches

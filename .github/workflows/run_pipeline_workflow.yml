@@ -27,12 +27,8 @@ jobs:
 
       - name: Run data load script
         env: 
-          SNOWFLAKE_HOST: ${{ secrets.SNOWFLAKE_HOST }}
-          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-          SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
-          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+          DESTINATION__MOTHERDUCK__CREDENTIALS__DATABASE: spacex
+          DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD: ${{ secrets.DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD }}
 
         run: |
-          uv run snowflake_data_load/load_data.py
+          uv run motherduck_data_load/load_data.py

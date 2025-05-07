@@ -1,7 +1,3 @@
-# This script uses dlt (https://dlthub.com/) to move data since its fairly lightweight and straightforward to use.
-# Other potential options are Meltano and Airbyte , both of which have readymade connectors to use (https://hub.meltano.com/extractors/tap-spacex-api / https://airbyte.com/connectors/spacex-api)
-# The downside is they're both significantly heavier compared to dlt.
-
 import dlt
 from dlt.sources.rest_api import rest_api_source
 import os
@@ -9,28 +5,33 @@ import os
 source = rest_api_source(
     {
         "client": {
-            "base_url": "https://api.spacexdata.com/v4/",
+            "base_url": "https://lldev.thespacedevs.com/2.3.0/",
             "paginator": {
-                "type": "json_link",
-                "next_url_path": "paging.next",
+                "type": "auto",
+                "next_url_path": "next",
             },
         },
         "resource_defaults": {
-            "write_disposition": "replace",
+            "write_disposition": "append", 
         },
         "resources": [
-            "launches",
-            "crew",
-            "landpads",
-            "launchpads",
-            "rockets",
-        ],
-    }
+            {
+                "name": "launches",
+                "endpoint": {
+                    "path": "launches",
+                    "params": {
+                        "limit": 100,
+                        "lsp__name": "SpaceX",
+                    },
+                },
+            },
+            ],
+    },
 )
 
 pipeline = dlt.pipeline(
     pipeline_name="spacex_data_load",
-    destination="motherduck",  # Switch to motherduck since Snowflake trial account expired
+    destination="motherduck",
     dataset_name="bronze",
 )
 
