@@ -31,4 +31,4 @@ jobs:
           DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD: ${{ secrets.DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD }}
 
         run: |
-          uv run motherduck_data_load/load_data.py
+          uv run dlt/spacex_pipeline.py
