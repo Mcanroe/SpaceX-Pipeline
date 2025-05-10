@@ -1,1 +1,0 @@
-select * from {{ source('spacex_md', 'launches') }}

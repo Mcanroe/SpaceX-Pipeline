@@ -1,5 +1,5 @@
 sources:
-  - name: spacex_md
+  - name: bronze
     database: spacex
     schema: bronze 
     tables:

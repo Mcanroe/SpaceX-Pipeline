@@ -13,6 +13,3 @@ snapshot-paths: ["snapshots"]
 clean-targets:      
   - "target"
   - "dbt_packages"
-
-flags:
-  send_anonymous_usage_stats: False
