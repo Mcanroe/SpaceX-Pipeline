@@ -21,4 +21,8 @@ select
     mission__orbit__name as mission_orbit_name,
     pad__id as pad_id,
     last_updated at time zone 'Europe/London' as last_updated_bst,
-from {{ source('bronze', 'launches') }}
+    _dlt_load_id as dlt_load_id,
+    dlt.inserted_at at time zone 'Europe/London' as dlt_load_dttm
+from {{ source('bronze', 'launches') }} lch
+inner join {{ source('bronze', '_dlt_loads') }} dlt
+on lch._dlt_load_id = dlt.load_id
