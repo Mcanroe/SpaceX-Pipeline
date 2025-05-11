@@ -13,3 +13,10 @@ snapshot-paths: ["snapshots"]
 clean-targets:      
   - "target"
   - "dbt_packages"
+
+models:
+  spacex_pipeline:
+    silver:
+      +schema: silver
+    gold:
+      +schema: gold

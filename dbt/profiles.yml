@@ -3,6 +3,5 @@ spacex_pipeline:
   outputs:
     dev:
       type: duckdb
-      schema: silver
       path: 'md:spacex'
       threads: 16
