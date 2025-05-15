@@ -1,0 +1,1 @@
+select * from gold.upcoming_launches

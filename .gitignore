@@ -8,3 +8,5 @@ logs
 secrets.toml
 config.toml
 .user.yml
+.vscode
+connection.options.yaml
