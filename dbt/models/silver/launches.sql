@@ -20,6 +20,7 @@ select
     mission__orbit__id as mission_orbit_id,
     mission__orbit__name as mission_orbit_name,
     pad__id as pad_id,
+    pad__name as pad_name,
     last_updated at time zone 'Europe/London' as last_updated_bst,
     _dlt_load_id as dlt_load_id,
     dlt.inserted_at at time zone 'Europe/London' as dlt_load_dttm

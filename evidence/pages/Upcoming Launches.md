@@ -6,10 +6,22 @@ description: Upcoming SpaceX launches
 
 # Upcoming Launches
 
-```sql last_updated
-select distinct dlt_load_dttm
+```sql upcoming
+select *
 from motherduck.upcoming_launches
 ```
 
-Last updated on <Value data={last_updated} fmt=longdate/>
+Pipeline last ran on <Value data={upcoming} column = dlt_load_dttm fmt=longdate/>
 
+<DataTable data={upcoming} search=true>
+    <Column id="image_thumbnail_url" title="Rocket Icon" contentType=image height=100px width=100px />
+    <Column id=mission_name/>
+    <Column id=launch_dttm_bst title="Proposed Launch Time (BST)" fmt="yyyy-mm-dd hh:mm:ss"/>
+    <Column id=rocket_configuration_name title="Rocket Configuration"/>
+    <Column id=mission_type />
+    <Column id=pad_name />    
+</DataTable>
+
+<Note>
+    Image Credits : SpaceX
+</Note>
