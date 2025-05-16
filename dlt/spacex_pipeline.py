@@ -10,7 +10,7 @@ import dlt
 from dlt.sources.rest_api import rest_api_source
 
 # Environment Variables
-API_BASE_URL = os.getenv('SPACEDEVS_API_URL', 'https://lldev.thespacedevs.com/2.3.0/')
+API_BASE_URL = os.getenv('SPACEDEVS_API_URL', 'https://ll.thespacedevs.com/2.3.0/')
 PIPELINE_NAME = 'spacex_data_load'
 DESTINATION = 'motherduck'
 DATASET_NAME = 'bronze'
