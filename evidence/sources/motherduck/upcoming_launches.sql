@@ -1,1 +1,1 @@
-select * from gold.upcoming_launches
+select * from spacex.gold.upcoming_launches
