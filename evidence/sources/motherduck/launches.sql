@@ -1,1 +1,0 @@
-select * from spacex.silver.launches

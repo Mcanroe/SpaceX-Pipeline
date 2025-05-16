@@ -1,0 +1,1 @@
+select * from spacex.gold.past_launches

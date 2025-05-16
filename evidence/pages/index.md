@@ -12,7 +12,7 @@ The data pipeline is structured as follows:
 
 ![pipeline](https://raw.githubusercontent.com/Mcanroe/SpaceX-Pipeline/refs/heads/main/evidence/static/pipeline.png)
 
-Currently the pipeline runs once a week, triggered by a cron job, and uses Github Actions as an orchestrator.
+Currently the pipeline runs once a week, is triggered by a cron job, and uses Github Actions as an orchestrator.
 
 
 <details>

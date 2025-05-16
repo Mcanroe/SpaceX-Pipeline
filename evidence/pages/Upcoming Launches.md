@@ -2,6 +2,7 @@
 title: Upcoming Launches
 hide_title: true
 description: Upcoming SpaceX launches
+sidebar_position: 1
 ---
 
 # Upcoming Launches
