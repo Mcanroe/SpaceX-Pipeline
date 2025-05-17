@@ -33,3 +33,18 @@ Yes, but most of them use an outdated API.
 <summary>Why only SpaceX?</summary>
 No particular reason. I might add other space agencies in the future.
 </details>
+
+---
+<details>
+<summary>Why use **insert tool choice**?</summary>
+
+dlt - For a simple task like this, it didn't make sense to use other heavy ingestion tools.
+
+dbt - Top dog for data transformation , offers built in data quality checks, and works really well with Motherduck unlike sqlmesh (which works but is not as intuitive).
+
+Motherduck - This one's debatable , honestly the main reason is that their free plan is quite generous (unlike Snowflake that has an expiry date).
+
+evidence - Looked really nice , unlike other BI tools their offering works really well for a static site aka personal projects. I also liked their code as BI approach rather than a drag and drop interface.
+</details>
+
+
