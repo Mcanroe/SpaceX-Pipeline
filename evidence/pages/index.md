@@ -44,7 +44,7 @@ dbt - Top dog for data transformation , offers built in data quality checks, and
 
 Motherduck - This one's debatable , honestly the main reason is that their free plan is quite generous (unlike Snowflake that has an expiry date).
 
-evidence - Looked really nice , unlike other BI tools their offering works really well for a static site aka personal projects. I also liked their code as BI approach rather than a drag and drop interface.
+evidence - Looked really nice , unlike other BI tools their offering works really well for a static site aka personal projects. I also liked their code first approach rather than the usual drag and drop interface.
 </details>
 
 
