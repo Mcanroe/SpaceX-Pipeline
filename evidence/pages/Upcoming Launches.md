@@ -7,22 +7,22 @@ sidebar_position: 1
 
 # Upcoming Launches
 
-```sql upcoming
-select distinct * 
+```sql pipeline_run_date
+select distinct dlt_load_dttm
 from motherduck.upcoming_launches
 ```
 
-```sql mission_type
+Pipeline last ran on <Value data={pipeline_run_date} column=dlt_load_dttm fmt=longdate/>
+
+```sql filters
 select mission_type,rocket_configuration_name,pad_name
 from motherduck.upcoming_launches
 ```
 
-Pipeline last ran on <Value data={upcoming} column=dlt_load_dttm fmt=longdate/>
-
 <DimensionGrid
     multiple
-    data={mission_type} 
-    metric='count(mission_type)'
+    data={filters} 
+    metric='count(*)'
     name=filters
     title="Filter by"
 />
@@ -32,7 +32,6 @@ select *
 from motherduck.upcoming_launches
 where ${inputs.filters}
 ```
-
 
 <DataTable data={upcoming_filtered} search=true>
     <Column id="image_thumbnail_url" title="Rocket Icon" contentType=image height=100px width=100px />
