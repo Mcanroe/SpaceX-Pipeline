@@ -1,7 +1,7 @@
 ---
 title: Past Launches
 hide_title: true
-description: Upcoming SpaceX launches
+description: Past SpaceX Launches
 ---
 
 # Past Launches
@@ -14,7 +14,7 @@ from motherduck.past_launches
 Pipeline last ran on <Value data={pipeline_run_date} column = dlt_load_dttm fmt=longdate/>
 
 ```sql filters
-select mission_type,rocket_configuration_name,pad_name
+select status,mission_type,rocket_configuration_name,pad_name
 from motherduck.past_launches
 ```
 
@@ -42,5 +42,5 @@ where ${inputs.filters}
 </DataTable>
 
 <Note>
-    Image Credits : SpaceX
+    Image Credits : SpaceX,NASA
 </Note>

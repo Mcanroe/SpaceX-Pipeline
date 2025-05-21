@@ -2,7 +2,7 @@
 title: Upcoming Launches
 hide_title: true
 description: Upcoming SpaceX launches
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Upcoming Launches
@@ -43,5 +43,5 @@ where ${inputs.filters}
 </DataTable>
 
 <Note>
-    Image Credits : SpaceX
+    Image Credits : SpaceX,NASA
 </Note>
