@@ -30,7 +30,7 @@ As an added bonus, it was also a good opportunity to try out tools I hadn't used
 
 Yes, but a lot them use an outdated API. 
 
-Additionally, I believe effective dashboarding prioritizes the end user. Many SpaceX dashboards seem to visualise every data point possible. 
+Many SpaceX dashboards also seem to visualise every data point possible. 
 
 In contrast, my dashboard focuses on presenting key essentials (launch count overview, past and upcoming launches).
 

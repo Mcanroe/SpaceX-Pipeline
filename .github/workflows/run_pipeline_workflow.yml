@@ -1,7 +1,7 @@
 name: Run pipeline
 on:
   schedule:
-    - cron: '0 0 * * 0'
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -31,3 +31,11 @@ jobs:
 
         run: |
           uv run dlt/spacex_pipeline.py
+
+      - name: Run dbt build
+        env:
+          MOTHERDUCK_TOKEN: ${{ secrets.DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD }}
+        run: |
+          cd dbt
+          dbt build
+          cd ..
