@@ -18,4 +18,8 @@ select
     pad__location__description as pad_location_description,
     pad__location__map_image as pad_location_map_image,
     pad__location__image__credit as pad_location_image_credit,
-from {{ source('bronze', 'launches') }}
+    _dlt_load_id as dlt_load_id,
+    dlt.inserted_at at time zone 'Europe/London' as dlt_load_dttm
+from {{ source('bronze', 'launches') }} lch
+inner join {{ source('bronze', '_dlt_loads') }} dlt
+on lch._dlt_load_id = dlt.load_id

@@ -1,0 +1,163 @@
+version: 2
+
+models:
+  - name: pad_overview
+    description: "Gold model providing a summary of launch pads, including their total launch counts and relevant informational links."
+    columns:
+      - name: pad_name
+        description: "Name of the launch pad."
+        tests:
+          - not_null
+          - unique
+      - name: pad_total_launch_count
+        description: "Total number of launches from this pad."
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 1 
+      - name: pad_map_image
+        description: "URL to an image of the launch pad's map location."
+      - name: pad_wiki_url
+        description: "URL to the Wikipedia page for the launch pad."
+
+  - name: past_launches
+    description: "Gold model representing all completed launch events (successes and failures). Sourced from the silver 'launches' model."
+    columns:
+      - name: launch_id
+        description: "Unique identifier for the launch event. Primary key."
+        tests:
+          - not_null
+          - unique
+      - name: name
+        description: "Full name of the launch event."
+        tests:
+          - not_null
+      - name: launch_designator
+        description: "Official designator for the launch."
+      - name: status_id
+        description: "Numeric identifier for the launch status. For past launches, this includes success or failure states."
+        tests:
+          - not_null
+          - accepted_values:
+              values: [3, 4, 6, 7]
+      - name: status
+        description: "Abbreviated status of the launch (e.g., Success, Failure)."
+        tests:
+          - not_null
+      - name: description
+        description: "Detailed description of the launch status."
+      - name: launch_dttm_bst
+        description: "Actual launch date and time in BST. For past launches, this timestamp is in the past."
+        tests:
+          - not_null
+      - name: image_thumbnail_url
+        description: "URL for a thumbnail image related to the launch."
+      - name: image_credit
+        description: "Credit for the launch image."
+      - name: fail_reason
+        description: "Reason for launch failure, if applicable. Should be populated if status indicates failure."
+      - name: rocket_id
+        description: "Identifier for the rocket used."
+      - name: rocket_configuration_name
+        description: "Full name of the rocket configuration."
+      - name: mission_id
+        description: "Identifier for the mission."
+      - name: mission_name
+        description: "Name of the mission."
+      - name: mission_type
+        description: "Type of the mission."
+      - name: mission_description
+        description: "Detailed description of the mission."
+      - name: mission_orbit_id
+        description: "Identifier for the mission's target orbit."
+      - name: mission_orbit_name
+        description: "Name of the mission's target orbit."
+      - name: pad_id
+        description: "Identifier for the launch pad used."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('pads') 
+              field: pad_id
+      - name: pad_name
+        description: "Name of the launch pad."
+      - name: last_updated_bst
+        description: "Timestamp of when this launch record was last updated in the source, BST."
+      - name: dlt_load_id
+        description: "DLT load identifier."
+      - name: dlt_load_dttm
+        description: "DLT load timestamp, BST."
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "{{ is_in_past('launch_dttm_bst') }}"
+
+  - name: upcoming_launches
+    description: "Gold model representing all planned or in-progress launch events (e.g., TBC, Go, In Flight). Sourced from the silver 'launches' model."
+    columns:
+      - name: launch_id
+        description: "Unique identifier for the launch event. Primary key."
+        tests:
+          - not_null
+          - unique
+      - name: name
+        description: "Full name of the launch event."
+        tests:
+          - not_null
+      - name: launch_designator
+        description: "Official designator for the launch."
+      - name: status_id
+        description: "Numeric identifier for the launch status. For upcoming launches, this excludes success or failure states."
+        tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 5, 8]
+      - name: status
+        description: "Abbreviated status of the launch (e.g., Go, TBC, In Flight)."
+        tests:
+          - not_null
+      - name: description
+        description: "Detailed description of the launch status."
+      - name: launch_dttm_bst
+        description: "Planned launch date and time in BST. For upcoming launches, this timestamp is typically in the future."
+        tests:
+          - not_null
+      - name: image_thumbnail_url
+        description: "URL for a thumbnail image related to the launch."
+      - name: image_credit
+        description: "Credit for the launch image."
+      - name: fail_reason
+        description: "Should typically be null for upcoming launches."
+      - name: rocket_id
+        description: "Identifier for the rocket used."
+      - name: rocket_configuration_name
+        description: "Full name of the rocket configuration."
+      - name: mission_id
+        description: "Identifier for the mission."
+      - name: mission_name
+        description: "Name of the mission."
+      - name: mission_type
+        description: "Type of the mission."
+      - name: mission_description
+        description: "Detailed description of the mission."
+      - name: mission_orbit_id
+        description: "Identifier for the mission's target orbit."
+      - name: mission_orbit_name
+        description: "Name of the mission's target orbit."
+      - name: pad_id
+        description: "Identifier for the launch pad used."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('pads') 
+              field: pad_id
+      - name: pad_name
+        description: "Name of the launch pad."
+      - name: last_updated_bst
+        description: "Timestamp of when this launch record was last updated in the source, BST."
+      - name: dlt_load_id
+        description: "DLT load identifier."
+      - name: dlt_load_dttm
+        description: "DLT load timestamp, BST."
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "{{ is_in_future('launch_dttm_bst') }}"

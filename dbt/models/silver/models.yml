@@ -1,0 +1,115 @@
+models:
+  - name: launches
+    description: "This model represents individual space launch events, cleaned and standardized from the bronze layer. Includes details about the launch, rocket, mission, and pad."
+    columns:
+      - name: launch_id
+        description: "Unique identifier for the launch event. Primary key."
+        tests:
+          - not_null
+          - unique
+      - name: name
+        description: "Full name of the launch event."
+        tests:
+          - not_null
+      - name: launch_designator
+        description: "Official designator for the launch."
+      - name: status_id
+        description: "Numeric identifier for the launch status."
+        tests:
+          - not_null
+      - name: status
+        description: "Status of the launch."
+        tests:
+          - not_null
+      - name: description
+        description: "Detailed description of the launch."
+      - name: launch_dttm_bst
+        description: "Planned or actual launch date and time, converted to BST (British Summer Time)."
+        tests:
+          - not_null
+      - name: image_thumbnail_url
+        description: "URL for a thumbnail image related to the launch."
+      - name: image_credit
+        description: "Credit for the launch image."
+      - name: fail_reason
+        description: "Reason for launch failure, if applicable."
+      - name: rocket_id
+        description: "Identifier for the rocket used in the launch."
+      - name: rocket_configuration_name
+        description: "Full name of the rocket configuration."
+      - name: mission_id
+        description: "Identifier for the mission associated with the launch."
+      - name: mission_name
+        description: "Name of the mission."
+      - name: mission_type
+        description: "Type of the mission."
+      - name: mission_description
+        description: "Detailed description of the mission."
+      - name: mission_orbit_id
+        description: "Identifier for the mission's target orbit."
+      - name: mission_orbit_name
+        description: "Name of the mission's target orbit."
+      - name: pad_id
+        description: "Identifier for the launch pad used. Foreign key to the pads model."
+        tests:
+          - not_null
+      - name: pad_name
+        description: "Name of the launch pad."
+      - name: last_updated_bst
+        description: "Timestamp of when this launch record was last updated in the source, converted to BST."
+      - name: dlt_load_id
+        description: "Identifier for the data load batch from the bronze layer (dlt)."
+      - name: dlt_load_dttm
+        description: "Timestamp of when the data was loaded into the bronze layer, converted to BST."
+
+  - name: pads
+    description: "This model represents launch pads, cleaned and standardized. Contains details about each pad's location and characteristics. This model is derived from launch data, focusing on pad-specific attributes."
+    columns:
+      - name: launch_id
+        description: "Identifier of a launch event that occurred or is planned from this pad. Note: This is the launch ID, not a unique ID for the pad itself in this context, as the model is sourced from launches."
+        tests:
+          - not_null
+          - unique
+      - name: pad_id
+        description: "Unique identifier for the launch pad. Conceptually the primary key for pad entities."
+        tests:
+          - not_null
+      - name: pad_name
+        description: "Name of the launch pad."
+        tests:
+          - not_null
+      - name: pad_image_name
+        description: "Name associated with the pad's image."
+      - name: pad_image_thumbnail_url
+        description: "URL for a thumbnail image of the launch pad."
+      - name: pad_image_credit
+        description: "Credit for the pad image."
+      - name: pad_description
+        description: "Detailed description of the launch pad."
+      - name: pad_wiki_url
+        description: "URL to the Wikipedia page for the launch pad."
+      - name: pad_map_url
+        description: "URL to a map view of the launch pad."
+      - name: pad_map_image
+        description: "URL to an image of the launch pad's map location."
+      - name: pad_total_launch_count
+        description: "Total number of launches from this pad recorded in the source."
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: pad_latitude
+        description: "Latitude of the launch pad."
+      - name: pad_longitude
+        description: "Longitude of the launch pad."
+      - name: pad_location_name
+        description: "Name of the geographical location of the launch pad (e.g., Cape Canaveral SFS)."
+      - name: pad_location_description
+        description: "Description of the pad's location."
+      - name: pad_location_map_image
+        description: "URL to an image of the pad's location map."
+      - name: pad_location_image_credit
+        description: "Credit for the pad location image."
+      - name: dlt_load_id
+        description: "Identifier for the data load batch from the bronze layer (dlt)."
+      - name: dlt_load_dttm
+        description: "Timestamp of when the data was loaded into the bronze layer, converted to BST."
