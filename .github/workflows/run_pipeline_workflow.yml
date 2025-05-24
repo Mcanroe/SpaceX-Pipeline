@@ -29,11 +29,7 @@ jobs:
           DESTINATION__MOTHERDUCK__CREDENTIALS__DATABASE: spacex
           DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD: ${{ secrets.DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD }}
 
-        run: |
-          uv run dlt/spacex_pipeline.py
-      
-      - name: test directory location
-        run: ls 
+        run: uv run dlt/spacex_pipeline.py
 
       - name: Run dbt build
         env:
@@ -42,4 +38,3 @@ jobs:
           cd dbt
           uv run dbt deps
           uv run dbt build
-          cd ..
