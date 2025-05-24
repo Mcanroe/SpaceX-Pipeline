@@ -22,10 +22,7 @@ jobs:
           python-version: '3.12' 
     
       - name: Install dependencies
-        run: |
-          uv venv
-          source .venv/bin/activate
-          uv sync
+        run: uv sync
 
       - name: Run data load script
         env: 
@@ -43,5 +40,5 @@ jobs:
           MOTHERDUCK_TOKEN: ${{ secrets.DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD }}
         run: |
           cd dbt
-          dbt build
+          uv run dbt build
           cd ..
