@@ -40,5 +40,6 @@ jobs:
           MOTHERDUCK_TOKEN: ${{ secrets.DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD }}
         run: |
           cd dbt
+          uv run dbt deps
           uv run dbt build
           cd ..
