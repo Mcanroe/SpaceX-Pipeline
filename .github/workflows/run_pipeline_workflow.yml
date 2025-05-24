@@ -30,7 +30,7 @@ jobs:
           DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD: ${{ secrets.DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD }}
 
         run: |
-          uv run dlt/spacex_pipeline.py
+          uv run dlt/spacex_pipeline.py --project
 
       - name: Run dbt build
         env:
