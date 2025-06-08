@@ -47,8 +47,6 @@ Explore the interactive dashboard hosted on Evidence Cloud:
 - **Data Warehouse:** [MotherDuck](https://motherduck.com/)
 - **Data Visualisation & BI:** [Evidence](https://evidence.dev/)
 - **Orchestration/Automation:** [GitHub Actions](https://github.com/features/actions)
-- **Programming Language:** Python
-- **Package Management:** [uv](https://github.com/astral-sh/uv) (Recommended)
 
 ## Project Structure
 
